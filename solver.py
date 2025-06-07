@@ -56,10 +56,29 @@ def solve(board : Board):
 		if solver.check() == sat:
 			pass
 		else:
-			print("found unique")
-			print(board.board)
+			# print("found unique")
+			# print(board.board)
+			return board.board
 	else:
 		print("unsat")
 
-for i in range(100):
-	solve(makeBoard(4, 22, 4))
+
+
+
+
+for towers in range(15, 38):
+	bs = []
+	
+	for i in range(1000):
+		print(f"towers-{towers}-attempt-{i}-found-{len(bs)}")
+		if len(bs) > 9:
+			break
+		b = solve(makeBoard(4, towers, 4))
+		if (b):
+			bs.append(b)
+
+	with open(f"out4-{towers}.txt", "w") as f:
+		f.write(str(bs))
+
+
+	
